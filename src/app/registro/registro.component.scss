@@ -1,0 +1,14 @@
+.container-registro {
+    height: 100dvh;
+
+    .content {
+        overflow: auto;
+        padding: 150px 0 120px;
+    }
+
+    form {
+        width: 95%;
+        max-width: 500px;
+    }
+
+}
