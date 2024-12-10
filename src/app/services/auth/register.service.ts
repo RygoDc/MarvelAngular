@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NewUser } from '../interfaces/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,13 @@ export class RegisterService {
 
   check(): Observable<any> {
     return this.http.get<any>(`${this.url}/status`);
+  }
+
+  createUser(usuario: NewUser): Observable<any> {
+    return this.http.post(`${this.url}/create`, usuario,{ 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   }
 }
