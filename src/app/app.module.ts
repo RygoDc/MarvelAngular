@@ -10,13 +10,15 @@ import { LayoutConHeaderComponent } from './layout-con-header/layout-con-header.
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegistroComponent } from './registro/registro.component';
 
+import { provideHttpClient,withInterceptorsFromDi } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PanelControlComponent,
     LayoutConHeaderComponent,
-    RegistroComponent
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,9 @@ import { RegistroComponent } from './registro/registro.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

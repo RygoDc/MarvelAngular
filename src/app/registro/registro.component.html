@@ -31,6 +31,7 @@
             <div class="mb-3">
                 <label for="edad" class="form-label">Edad</label>                               
                 <select formControlName="edad" class="form-select" name="edad" id="edad">
+                    <option value="">Selecciona tu edad</option>
                     <option *ngFor="let i of numbers" [value]="i+1"> {{i+1}}</option>
                 </select>
             </div>
@@ -48,31 +49,45 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
+                <div class="position-relative show-password">
+                <i (click)="togglePassword()"
+                    class="bi position-absolute d-flex align-items-center justify-content-center px-3"
+                    [ngClass]="changetype ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
                 <input formControlName="password" class="form-control"
-                [ngClass]="{
-                    'is-invalid':registroForm.get('password')?.touched && registroForm.get('password')?.invalid,
-                    'is-valid':registroForm.get('password')?.touched && registroForm.get('password')?.valid
-                    }"
-                type="password" name="password" id="password">
+                    [ngClass]="{
+                        'is-invalid':registroForm.get('password')?.touched && registroForm.get('password')?.invalid,
+                        'is-valid':registroForm.get('password')?.touched && registroForm.get('password')?.valid
+                        }"
+                    type="{{changetype ? 'text' : 'password'}}" id="password" placeholder="******">
                 <div class="invalid-feedback" *ngIf="registroForm.get('password')?.touched && registroForm.get('password')?.invalid">
                     El password es OBLIGATORIO
                   </div>
+                </div>
             </div>
+            
             <div class="mb-3">
                 <label for="repassword" class="form-label">Confirmar contraseña</label>
+                <div class="position-relative show-password">
+                <i (click)="togglePassword()"
+                    class="bi position-absolute d-flex align-items-center justify-content-center px-3"
+                    [ngClass]="changetype ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
                 <input formControlName="repassword" class="form-control"
                 [ngClass]="{
                     'is-invalid':registroForm.get('repassword')?.touched && registroForm.get('repassword')?.invalid,
                     'is-valid':registroForm.get('repassword')?.touched && registroForm.get('repassword')?.valid
                     }"
-                type="password" name="repassword" id="repassword">
+                type="{{changetype ? 'text' : 'password'}}" id="repassword" placeholder="******">
                 <div class="invalid-feedback" *ngIf="registroForm.get('repassword')?.touched && registroForm.get('repassword')?.invalid">
                     La confirmacion del password es OBLIGATORIO
                   </div>
             </div>
+            </div>
             <div class="text-end mb-5">
                 <button type="submit" class="btn btn-primary" [disabled]="registroForm.invalid">Registrar</button>
             </div>
+            <div class="border-top border-light-subtle pt-3">
+                <button routerLink="/login" type="button" class="btn btn-outline-dark w-100">Iniciar sesion</button>
+              </div>
         </form>
     </div>
 </div>

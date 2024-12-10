@@ -6,9 +6,17 @@
         padding: 150px 0 120px;
     }
 
-    form {
+    form{
         width: 95%;
         max-width: 500px;
-    }
+    
+        .show-password {
+          i{
+            right: 0;
+            top: 0;
+            bottom: 0;
+          }
+        }        
+      }
 
 }

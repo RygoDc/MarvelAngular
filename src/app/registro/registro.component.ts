@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { PopupService } from '../services/utils/popup.service';
+import { RegisterService } from '../services/auth/register.service';
 
 @Component({
   selector: 'app-registro',
@@ -8,12 +9,15 @@ import { PopupService } from '../services/utils/popup.service';
   styleUrl: './registro.component.scss'
 })
 export class RegistroComponent {
+
+  changetype: boolean = false;
   registroForm: FormGroup;
   numbers: number[] = Array.from(Array(100).keys());
 
   constructor(
     private formBuilder: FormBuilder,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private registerService: RegisterService
   ) {
     this.registroForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -26,10 +30,34 @@ export class RegistroComponent {
   }
 
   enviarRegistro(): void {
-    if (this.registroForm.valid) {
-      this.popupService.showMessage('success', 'Registro exitoso', 'Bienvenido a Marvel peeeeeeerrrrro');
-    } else {
-      this.popupService.showMessage('error', 'Error', 'Los datos introducidos no son validos, llora');
-    }
+    if (this.registroForm.invalid)
+      return;
+
+    this.registerService.check().subscribe({
+      next: response => {
+        console.log(response);
+        this.popupService.showMessage(
+          "success",
+          "Registro Correcto", 
+          " Entraste con exito peeeerrrrooo "+ response.message,   
+        )      
+      },
+      error: error => {
+        console.log(error);
+        this.popupService.showMessage(
+          "error",
+          "Registro Incorrecto",
+          "no entraste miau miau miau " + error.message,   
+        )
+      }
+    })
+        
   }
+
+  togglePassword(): void {
+    this.changetype = !this.changetype;
+  }
+
+  
 }
+

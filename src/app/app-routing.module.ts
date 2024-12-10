@@ -6,12 +6,12 @@ import {LayoutConHeaderComponent} from './layout-con-header/layout-con-header.co
 import { RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
-  {path:" ", redirectTo: "login", pathMatch: "full"},
+  {path:"", redirectTo: "login", pathMatch: "full"},
   {path:"login", component: LoginComponent},
   {path:"registro", component: RegistroComponent},
   {
     path: "app", component: LayoutConHeaderComponent, children: [
-      {path:" ", redirectTo: "panel-control", pathMatch: "full"},
+      {path:"", redirectTo: "panel-control", pathMatch: "full"},
       {path: "panel-control", component: PanelControlComponent},
     ]
   }
