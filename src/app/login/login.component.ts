@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PopupService} from '../services/utils/popup.service';
+import { LoginService } from '../services/auth/login.service';
+import { LoginUser } from '../services/interfaces/usuario';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,8 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private loginService: LoginService
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -25,13 +28,55 @@ togglePassword(): void {
   this.changetype = !this.changetype;
 }
 
+// enviar(): void {
+//     if(this.loginForm.valid) {
+//       this.loginService.login(this.loginForm.value as LoginUser).subscribe({
+//         next: response => {
+//           console.log(response);
+//           this.popupService.showMessage(
+//             "success",
+//             "Login Correcto",
+//             "Buenna perro entraste ");
+//         },
+//         error: error => {
+//           console.log(error);
+//           this.popupService.showMessage(
+//             "error",
+//             "Login Incorrecto",
+//             "Que pena no entraste miau miau miau ");
+//         }
+//       })
+//     } 
+//   }
+
 enviar(): void {
-    if(this.loginForm.invalid) {
-      return this.popupService.showMessage("error", "Login Incorrecto","Que pena no entraste miau miau miau")
-    }
-    this.popupService.showMessage(
-      "success",
-      "Login Correcto",
-      "Buenna perro entraste")
-}
+    if(this.loginForm.valid) {
+      this.loginService.loginV2(this.loginForm.value as LoginUser).subscribe({
+        next: response => {
+          console.log(response);
+          this.popupService.showMessage(
+            "success",
+            "Login Correcto",
+            "Buenna perro entraste ");
+        },
+        error: error => {
+          if(error.status === 401){
+            this.popupService.showMessage(
+              "error",
+              "Contraseña Incorrecta!!!",
+              "Que pena no entraste miau miau miau ");
+          }else{
+            this.popupService.showMessage(
+              "error",
+              "Usuario no existe!!!",
+              "Miau miau miau ");
+          }
+          
+          
+        }
+      })
+    } 
+  }
+  
+
 }

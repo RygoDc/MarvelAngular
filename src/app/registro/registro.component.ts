@@ -22,7 +22,7 @@ export class RegistroComponent {
     private registerService: RegisterService
   ) {
     this.registroForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
+      nombre: ['', [Validators.required]],
       username: ['', [Validators.required]],
       edad: ['', [Validators.required]],
       email: ['', [Validators.required]],
@@ -33,20 +33,12 @@ export class RegistroComponent {
 
   enviarRegistro(): void {
     if (this.registroForm.invalid)
-      return;
-
-    const nuevoUsuario: NewUser = {
-      username: this.registroForm.get('username')?.value,
-      password: this.registroForm.get('password')?.value,
-      nombre: this.registroForm.get('name')?.value,
-      email: this.registroForm.get('email')?.value,
-      edad: this.registroForm.get('edad')?.value,
-    }
+      return;   
 
 
 // this.registerForm.value as NewUser es lo mismo que nuevoUsuario
 
-    this.registerService.createUser(nuevoUsuario).subscribe({
+    this.registerService.createUser(this.registroForm.value as NewUser).subscribe({
       next: response => {
         console.log(response);
         this.popupService.showMessage(

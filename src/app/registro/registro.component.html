@@ -5,14 +5,14 @@
                 <h1 class="h3 text-center mb-0">Registro</h1>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Nombre</label>
-                <input formControlName="name" class="form-control"
+                <label for="nombre" class="form-label">Nombre</label>
+                <input formControlName="nombre" class="form-control"
                 [ngClass]="{
-                    'is-invalid':registroForm.get('name')?.touched && registroForm.get('name')?.invalid,
-                    'is-valid':registroForm.get('name')?.touched && registroForm.get('name')?.valid
+                    'is-invalid':registroForm.get('nombre')?.touched && registroForm.get('nombre')?.invalid,
+                    'is-valid':registroForm.get('nombre')?.touched && registroForm.get('nombre')?.valid
                     }"
-                type="text" name="name" id="name">
-                <div class="invalid-feedback" *ngIf="registroForm.get('name')?.touched && registroForm.get('name')?.invalid">
+                type="text" name="nombre" id="nombre">
+                <div class="invalid-feedback" *ngIf="registroForm.get('nombre')?.touched && registroForm.get('nombre')?.invalid">
                     El nombre es OBLIGATORIO
                   </div>
             </div>            
