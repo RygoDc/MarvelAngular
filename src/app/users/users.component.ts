@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Users } from '../services/interfaces/usuario';
 import { PopupService } from '../services/utils/popup.service';
 import { GetUsersBdService } from '../services/auth/get-users-bd.service';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-users',
@@ -11,6 +12,8 @@ import { GetUsersBdService } from '../services/auth/get-users-bd.service';
 export class UsersComponent implements OnInit {
   users : Users[] = []
   showNoData: boolean = false;
+  showModal: boolean = false;
+
 
   constructor(
     private popupService: PopupService,
@@ -36,6 +39,16 @@ export class UsersComponent implements OnInit {
       
     });
   
+  }
+  addNewUser(): void{
+    const modalElement = document.getElementById('modalUser');
+    if(modalElement){
+      const modalInstance = new bootstrap.Modal(modalElement);
+      
+      if(!this.showModal){
+        modalInstance.show();
+      }
+    }
   }
 
 }

@@ -1,9 +1,11 @@
 
 <div class="container w-100 h-100 d-flex align-items-center bg-dark">
     <div class="w-100 h-100 position-relative">
-        <div class=" border-bottom border-light-subtle pb-3 mb-3 mt-3">
-            <h1 class="text-center text-light mb-0">Usuarios</h1>
-        </div>
+        
+        <h1 class="border-bottom border-light-subtle pb-3 mb-3 mt-3 text-center text-light mb-0">Usuarios</h1>
+        
+        <button type="button" class="w-100 btn btn-outline-primary mb-3" (click)="addNewUser()">Añadir usuario</button>
+
         <div class="row gap-2 justify-content-around w-100" *ngIf="users.length > 0">
             <div class="col-5 py-3 px-3 bg-light text-dark shadow-sm rounded " *ngFor="let user of users" >
                 <p>Id:{{user.id}} </p>
@@ -18,3 +20,5 @@
         </p>
     </div>
 </div>
+
+<app-modal-add-user></app-modal-add-user>

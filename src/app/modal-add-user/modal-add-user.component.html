@@ -1,0 +1,39 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="modalUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <form class="modal-content" [formGroup]="registerForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Crear usuario</h5>
+          <button type="button" class="btn btn-danger position-absolute" style="right: 10px" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+            <input type="text" class="form-control" formControlName="username" name="username" placeholder="username">
+            </div>
+            <div class="mb-3">
+            <input type="password" class="form-control" formControlName="password" name="password" placeholder="password">
+            </div>
+            <div class="mb-3">
+            <input type="text" class="form-control" formControlName="nombre" name="name" placeholder="name">
+            </div>
+            <div class="mb-3">
+            <input type="email" class="form-control" formControlName="email" name="email" placeholder="email">
+            </div>
+            <div class="mb-3">
+            <input type="number" class="form-control"S formControlName="edad" name="edad" placeholder="edad">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Cerrar</button>
+          <button type="button" class="btn btn-primary"(click)="guardar()">Guardar</button>
+        </div>
+    </form>
+    </div>
+  </div>

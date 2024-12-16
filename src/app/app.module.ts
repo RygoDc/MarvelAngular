@@ -13,6 +13,7 @@ import { provideHttpClient,withInterceptors,withInterceptorsFromDi } from '@angu
 import { authInterceptor } from './services/interceptors/auth.interceptor';
 import { UsersComponent } from './users/users.component';
 import { BottomNavComponent } from './bottom-nav/bottom-nav.component';
+import { ModalAddUserComponent } from './modal-add-user/modal-add-user.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { BottomNavComponent } from './bottom-nav/bottom-nav.component';
     RegistroComponent,
     UsersComponent,
     BottomNavComponent,
+    ModalAddUserComponent,
   ],
   imports: [
     BrowserModule,
