@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PopupService} from '../services/utils/popup.service';
 import { LoginService } from '../services/auth/login.service';
 import { LoginUser } from '../services/interfaces/usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private popupService: PopupService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -53,11 +55,17 @@ enviar(): void {
     if(this.loginForm.valid) {
       this.loginService.loginV2(this.loginForm.value as LoginUser).subscribe({
         next: response => {
+          this.loginService.setUser(this.loginForm.value as LoginUser);         
+
           console.log(response);
-          this.popupService.showMessage(
+          this.popupService.loading(
             "success",
-            "Login Correcto",
-            "Buenna perro entraste ");
+            "Login Correcto, Buenna perro entraste ");
+
+          setTimeout(() => {
+            this.popupService.close();
+            this.router.navigate(['/users']);
+          }, 2000)
         },
         error: error => {
           if(error.status === 401){

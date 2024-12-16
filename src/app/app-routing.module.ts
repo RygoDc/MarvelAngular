@@ -4,15 +4,19 @@ import {LoginComponent} from './login/login.component'
 import {PanelControlComponent} from './panel-control/panel-control.component';
 import {LayoutConHeaderComponent} from './layout-con-header/layout-con-header.component';
 import { RegistroComponent } from './registro/registro.component';
+import { UsersComponent } from './users/users.component';
+import { isLoggedGuard } from './services/guards/is-logged.guard';
 
 const routes: Routes = [
   {path:"", redirectTo: "login", pathMatch: "full"},
+  
+  
   {path:"login", component: LoginComponent},
   {path:"registro", component: RegistroComponent},
   {
-    path: "app", component: LayoutConHeaderComponent, children: [
-      {path:"", redirectTo: "panel-control", pathMatch: "full"},
-      {path: "panel-control", component: PanelControlComponent},
+    path: "", component: LayoutConHeaderComponent, canActivate: [isLoggedGuard], 
+    children: [
+      {path: "users", component: UsersComponent},    
     ]
   }
 ];

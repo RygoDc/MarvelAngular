@@ -21,10 +21,6 @@ export class RegisterService {
   }
 
   createUser(usuario: NewUser): Observable<any> {
-    return this.http.post(`${this.url}/create`, usuario,{ 
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return this.http.post(`${this.url}/create`, usuario);
   }
 }

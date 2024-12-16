@@ -9,8 +9,11 @@ import { PanelControlComponent } from './panel-control/panel-control.component';
 import { LayoutConHeaderComponent } from './layout-con-header/layout-con-header.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegistroComponent } from './registro/registro.component';
+import { provideHttpClient,withInterceptors,withInterceptorsFromDi } from '@angular/common/http';
+import { authInterceptor } from './services/interceptors/auth.interceptor';
+import { UsersComponent } from './users/users.component';
+import { BottomNavComponent } from './bottom-nav/bottom-nav.component';
 
-import { provideHttpClient,withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,8 @@ import { provideHttpClient,withInterceptorsFromDi } from '@angular/common/http';
     PanelControlComponent,
     LayoutConHeaderComponent,
     RegistroComponent,
+    UsersComponent,
+    BottomNavComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,7 @@ import { provideHttpClient,withInterceptorsFromDi } from '@angular/common/http';
     ReactiveFormsModule,
   ],
   providers: [
-    provideHttpClient(withInterceptorsFromDi())
+    provideHttpClient(withInterceptors([authInterceptor]))
   ],
   bootstrap: [AppComponent]
 })
