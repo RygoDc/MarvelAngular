@@ -6,6 +6,7 @@ import {LayoutConHeaderComponent} from './layout-con-header/layout-con-header.co
 import { RegistroComponent } from './registro/registro.component';
 import { UsersComponent } from './users/users.component';
 import { isLoggedGuard } from './services/guards/is-logged.guard';
+import { MarvelListComponent } from './marvel-list/marvel-list.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "login", pathMatch: "full"},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {
     path: "", component: LayoutConHeaderComponent, canActivate: [isLoggedGuard], 
     children: [
-      {path: "users", component: UsersComponent},    
+      {path: "users", component: UsersComponent},
+      {path: "marvel", component: MarvelListComponent}    
     ]
   }
 ];
